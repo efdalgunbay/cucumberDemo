@@ -20,9 +20,6 @@ public class Hooks {
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         Driver.getDriver().get(ConfigReader.getProperty("url_live"));
-        Driver.getDriver().manage().deleteAllCookies();
-        ReusableMethods.closeCerez();
-
     }
 
     @After

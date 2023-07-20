@@ -184,14 +184,6 @@ public class ReusableMethods {
         return select.getFirstSelectedOption();
     }
 
-    public static void closeCerez() {
-        WebElement cerez = Driver.getDriver().findElement(By.cssSelector(".cookie-notification.row"));
-        if (cerez.isEnabled()) {
-            Driver.getDriver().findElement(By.cssSelector(".js-close-notification")).click();
-        }
-
-    }
-
 
     public static void scrollToElement(WebElement element) {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
