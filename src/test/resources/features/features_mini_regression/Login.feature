@@ -9,7 +9,7 @@ Feature: US_002_Login_Tests
 
   @Login
     Scenario: EN_201 Negative Login
-      And Email Button Click
+      And Email Button Clicks
 
 
 

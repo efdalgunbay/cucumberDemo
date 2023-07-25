@@ -14,9 +14,16 @@ public class LoginStepDefinitions {
 
 
     @Given("Email Button Click")
-    public void anasayfadaki_giris_yap_butonuna_tiklar() {
+    public void email_button() {
        loginPage.emailButton.click();
        ReusableMethods.waitFor(3);
+
+    }
+
+    @Given("Email Button Clicks")
+    public void email_button_click() {
+        loginPage.emailButton2.click();
+        ReusableMethods.waitFor(3);
 
     }
 
