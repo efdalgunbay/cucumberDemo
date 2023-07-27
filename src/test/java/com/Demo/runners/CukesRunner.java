@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"pretty","json:target/cucumber.json"},
+        plugin = {"pretty","html:target/cucumber.html","json:target/cucumber.json"},
         glue = "com/Demo/step_definitions",
         //FOR SMOKE
         //features = "src/test/resources/features/features_smoke",
