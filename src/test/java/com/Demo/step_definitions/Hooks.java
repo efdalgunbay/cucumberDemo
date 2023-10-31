@@ -9,12 +9,12 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-
+import com.Demo.utilities.slackMassage;
 import java.util.concurrent.TimeUnit;
 
 
 public class Hooks {
-
+slackMassage slack=new slackMassage();
     @Before
     public void setUp(){
         Driver.getDriver().manage().window().maximize();
@@ -29,8 +29,12 @@ public class Hooks {
             final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot,"image/png","screenshot");
         }
-
-     Driver.close();
+        try {
+            slack.sendStatus();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Driver.close();
 
     }
 
