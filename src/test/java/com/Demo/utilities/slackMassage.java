@@ -18,22 +18,21 @@ import java.util.*;
 
 public class slackMassage {
 
-    public static int totalFailed = 0;
-    public static int scenarioCount = 0;
-    public static int passedScenarioCount = 0;
-    public static int totalPassed = 0;
-    public static int totalSkipped = 0;
+
+
+
 
     public List<String> getCucumberReportStatuses() throws FileNotFoundException {
         JsonParser parser = new JsonParser();
         JsonArray originalJSONArray = parser.parse(new FileReader("target/cucumber.json")).getAsJsonArray();
         JsonArray jsonArray = removeDuplicateScenarios(originalJSONArray);
+         int totalFailed = 0;
+          int scenarioCount = 0;
+         int passedScenarioCount = 0;
+         int totalPassed = 0;
+         int totalSkipped = 0;
 
-        int scenarioCount = 0;
-        int passedScenarioCount = 0;
-        int totalSteps = 0;
-        int totalPassed = 0;
-        int totalSkipped = 0;
+         int totalSteps = 0;
 
         try {
             for (JsonElement element : jsonArray) {
@@ -87,7 +86,7 @@ public class slackMassage {
         return reportElements;
     }
 
-    private JsonArray removeDuplicateScenarios(JsonArray jsonArray) {
+    public JsonArray removeDuplicateScenarios(JsonArray jsonArray) {
         JsonArray cleanedArray = new JsonArray();
         Set<String> processedScenarios = new HashSet<>();
 
@@ -112,12 +111,8 @@ public class slackMassage {
 
         return cleanedArray;
     }
-    public static String slcakUploadUrl="https://slack.com/api/file.upload";
-    public static String slackToken="T0756BTNU-B05JW1VF0RL-QtKTKEP6gyihs8140d7EmInA";
-    public static String slackWrbHookUrl="https://hooks.slack.com/services/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";
+    public static String slackWrbHookUrl="https://hooks.slack.com/services/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";
     public String slackChannelId="C05JTFQ0Y7M";
-    private static Properties properties;
-
     public void sendStatus() throws Exception
     {
         LocalDate currentDate = LocalDate.now();
@@ -154,10 +149,9 @@ public class slackMassage {
                                         SectionBlock.builder()
                                                 .text(MarkdownTextObject.builder()
                                                         .text("*Regression test results on * " + sendTime + "\n\n" +
-                                                                "Total test cases executed: " + scenarioCount + "\n\n\n" +
-                                                                "\u2705 * Pass Count:* " + totalPassed + "\n\n" +
-                                                                "\u274C * Failed Count:* " + totalFailed + "\n\n" +
-                                                                "\uD83C\uDF00 * Skipped Count:* " + totalSkipped + "\n\n")
+                                                                "Total test cases executed: " + getCucumberReportStatuses().get(1) + "\n\n\n" +
+                                                                "\u2705 * Pass Count:* " + getCucumberReportStatuses().get(2) + "\n\n" +
+                                                                "\u274C * Failed Count:* " + getCucumberReportStatuses().get(4) + "\n\n")
                                                         .build())
                                                 .build()
                                 ))
@@ -171,5 +165,7 @@ public class slackMassage {
             ex.printStackTrace();
         }
     }
+
+
 }
 

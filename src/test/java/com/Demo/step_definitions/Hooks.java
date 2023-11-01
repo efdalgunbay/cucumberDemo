@@ -10,6 +10,8 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import com.Demo.utilities.slackMassage;
+import org.testng.annotations.AfterSuite;
+
 import java.util.concurrent.TimeUnit;
 
 
@@ -34,8 +36,17 @@ slackMassage slack=new slackMassage();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        Driver.close();
+        Driver.getDriver().close();
 
+    }
+
+    @AfterSuite
+    public void slackmesaj() throws Exception{
+        try {
+            slack.sendStatus();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
